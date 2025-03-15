@@ -22,8 +22,11 @@ def bfs(cur):
     A[cur] = 0
     vst[cur] = True
 
+    parts = []
+
     while q:
         cur = q.popleft()
+        parts.append(cur)
 
         for next, w in graph[cur]:
             if not vst[next]:
@@ -33,16 +36,34 @@ def bfs(cur):
 
             elif A[next] != (A[cur] ^ w):
                 failure = True
-                return
+                return []
+
+    return parts
 
 
 def solve():
     for i in range(1, N + 1):
-        if not vst[i]:
-            bfs(i)
+        if vst[i]:
+            continue
+
+        parts = bfs(i)
 
         if failure:
             return
+
+        pn = len(parts)
+        we = 0
+
+        for i in range(61):
+            ocount = 0
+            for part in parts:
+                ocount += 1 if A[part] & (1 << i) else 0
+
+            if ocount > pn - ocount:
+                we |= 1 << i
+
+        for part in parts:
+            A[part] ^= we
 
 
 solve()
