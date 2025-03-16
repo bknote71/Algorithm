@@ -1,6 +1,10 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        # 이거는 분할 정복
+        if n == 0:
+            return 1
+        
+        if n == 1:
+            return x
 
         if n < 0:
             x = 1 / x
