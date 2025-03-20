@@ -1,22 +1,22 @@
 N = int(input())
 
 # x^3 - y^3 = N
-# (x - y)(x^2 + xy + y^2) >= (x - y)(x^2 - 2xy + y^2)
-# x - y = k
-# x = y + k
+# (x - y)(x^2 + xy + y^2)
 
+# x - y = k (x = y + k)
+
+# 1. N >= (x - y)(x^2 - 2xy + y^2) = (x - y)^3
 # k^3 <= N
 
 # k(3y^2 + 3yk + k^2) == N
-# (3y^2 + 3yk + k^2) == N // k
-# N % k == 0
+# (3y^2 + 3yk + k^2) == N // k (N % k == 0)
 
-# find (3y^2 + 3yk + k^2) - N // k == 0
-# - 여기서 질문. 왜 x를 찾는 것은 안되었을까요?
+# find k, y
+# 3y^2 + 3yk + k^2 - N // k == 0
 
 
 def bs(k, m):
-    lo, hi = 0, 600000001  # 이거 왜 6천만이지?
+    lo, hi = 0, 600000001
     while lo + 1 < hi:
         y = (lo + hi) // 2
 
